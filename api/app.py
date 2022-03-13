@@ -14,7 +14,7 @@ import re
 # Initialisation
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
-db_path = os.path.join(basedir, "..\\data\\db.sqlite")
+db_path = os.path.join(basedir, "../data/db.sqlite")
 # Database init
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -378,4 +378,7 @@ def get_user_stats(current_user, user_id):
 
 # run server
 if __name__ == '__main__':
-    app.run()
+    if os.environ.get('PORT') is not None:
+        app.run(debug=True, host='0.0.0.0')
+    else:
+        app.run(debug=True, host='0.0.0.0')
