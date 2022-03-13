@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from dateutil import parser
 import jwt
 from functools import wraps
+import re
 
 # Initialisation
 app = Flask(__name__)
@@ -126,6 +127,12 @@ def add_user():
     new_password = generate_password_hash(data['password'], method='sha256')
     new_email = data['email']
     new_uuid_str = str(uuid.uuid4())
+
+    if not re.match(r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$', new_email):
+        return jsonify({
+            "error_code": 400,
+            "error_text": "E-mail invalid!"
+        }), 400
 
     if User.query.filter_by(login=new_login).first() or User.query.filter_by(email=new_email).first():
         return jsonify({
