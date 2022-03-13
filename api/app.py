@@ -13,8 +13,9 @@ from functools import wraps
 # Initialisation
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(basedir, "..\\data\\db.sqlite")
 # Database init
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "5i8cpk3x7IQeUmX16Jtr"
 db = SQLAlchemy(app)
