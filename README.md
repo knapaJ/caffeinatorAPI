@@ -38,7 +38,7 @@ Implemented using Flask, SQLAlchemy and SQLite3
    - `/stats/coffee/user/<user_id>` - methods `GET`
      - List all drinks served to `user_id`
      - Requires Authentication by the same user as `user_id`!
-     [see User authentication](#user-authentication
+     [see User authentication](#user-authentication)
      - Returns `200` and a JSON object with `user_id`, `user`(user's login), `user_email`
      and an array `drinks_bought`, where each drink has `time`, `sold by`, `sold_by_id` and `caffeine`
 ##### User authentication
